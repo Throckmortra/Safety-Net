@@ -1,13 +1,15 @@
 package hackdc.safetynet;
 
+import android.os.Bundle;
+import android.util.Log;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+
 import android.util.Log;
 import android.util.Patterns;
 
@@ -38,7 +40,7 @@ public class MyGcmReceiver extends GcmListenerService {
                         .setContentTitle("Fred is having an episode!")
                         .setContentText("help him :(")
                         .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
-                        .setLights(Color.RED, 3000, 3000);;
+                        .setLights(Color.WHITE, 3000, 3000);;
 
 // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(this, MainActivity.class);
