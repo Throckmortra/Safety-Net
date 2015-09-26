@@ -1,23 +1,160 @@
 package hackdc.safetynet;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.support.design.widget.FloatingActionButton;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
 
 public class MainActivity extends AppCompatActivity {
 
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+    private Context mContext;
+    private FloatingActionButton fab;
+    private String mActivityTitle;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayAdapter<String> mArrayAdapter;
+    private String [] fakeData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mContext = getApplicationContext();
+
+//TODO: WORK ON CLICK FOR ADD EPISODE REPORT
+//        fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(TabActivity.this, OrangeTabsActivity.class);
+//                intent.putExtra("buttonID", 1 + "");
+//                startActivity(intent);
+//            }
+//        });
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mActivityTitle = getTitle().toString();
+        addDrawerItems();
+        setupDrawer();
+        // Set the adapter for the list view
+        // Set the list's click listener
+
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mAdapter = new RecyclerAdapter(fakeData);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("nav bar click", position + "");
+                if(position == 0) {
+//                    Intent intent = new Intent(TabActivity.this, OrangeTabsActivity.class);
+//                    intent.putExtra("buttonID", 0 + "");
+//                    startActivity(intent);
+                } else if(position == 1) { //NOTIFICATIONS
+
+                }
+                else if(position == 2) { //ADD FRIENDS
+
+                }
+                else if(position == 3) { //GROUPS
+                }
+                else if(position == 5) {
+//                    logout();
+                }
+            }
+        });
+
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                mDrawerLayout,
+                R.string.drawer_open,
+                R.string.drawer_close) {
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                getSupportActionBar().setTitle(mActivityTitle);
+                invalidateOptionsMenu();
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu();
+            }
+        };
+
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
+
+    private void addDrawerItems() {
+        String[] navItems = { "Dashboard", "Resources", "Settings", "Sign Out" };
+        mArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, navItems);
+        mDrawerList.setAdapter(mArrayAdapter);
+    }
+
+    private void setupDrawer() {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                R.string.drawer_open, R.string.drawer_close) {
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+        };
+
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
@@ -32,6 +169,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            Log.d("drawer click", item.toString());
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
+
 }
