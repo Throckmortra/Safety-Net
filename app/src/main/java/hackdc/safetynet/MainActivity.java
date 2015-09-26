@@ -1,16 +1,23 @@
 package hackdc.safetynet;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.support.design.widget.FloatingActionButton;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    private Context mContext;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mContext = getApplicationContext();
     }
 
     @Override

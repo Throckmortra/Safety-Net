@@ -8,4 +8,19 @@
     <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/addpic"
+        android:layout_gravity="bottom|end"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        app:backgroundTint="#FC9418"/>
+
 </RelativeLayout>
