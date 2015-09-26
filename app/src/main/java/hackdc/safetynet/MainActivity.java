@@ -21,9 +21,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getpebble.android.kit.PebbleKit;
+import com.getpebble.android.kit.util.PebbleDictionary;
+
+import java.util.UUID;
+
 
 public class MainActivity extends AppCompatActivity {
 
+    private final UUID PEBBLE_APP_UUID = UUID.fromString("e06e86a8-8c29-4f62-9640-6ef21e1f1480");
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private Context mContext;
@@ -65,19 +71,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("nav bar click", position + "");
-                if(position == 0) {
+                if (position == 0) {
 //                    Intent intent = new Intent(TabActivity.this, OrangeTabsActivity.class);
 //                    intent.putExtra("buttonID", 0 + "");
 //                    startActivity(intent);
-                } else if(position == 1) { //NOTIFICATIONS
+                } else if (position == 1) { //NOTIFICATIONS
 
-                }
-                else if(position == 2) { //ADD FRIENDS
+                } else if (position == 2) { //ADD FRIENDS
 
-                }
-                else if(position == 3) { //GROUPS
-                }
-                else if(position == 5) {
+                } else if (position == 3) { //GROUPS
+                } else if (position == 5) {
 //                    logout();
                 }
             }
@@ -106,8 +109,28 @@ public class MainActivity extends AppCompatActivity {
 
         startGcm();
 
+        PebbleKit.registerReceivedDataHandler(this, new PebbleKit.PebbleDataReceiver(PEBBLE_APP_UUID) {
 
+            @Override
+            public void receiveData(final Context context, final int transactionId, final PebbleDictionary data) {
+                Log.d("pebble data", "Received : " + data.getInteger(0));
 
+                String toasty = "";
+                switch (data.getInteger(0).intValue()) {
+                    case 0:
+                        toasty = "up";
+                        break;
+                    case 1:
+                        toasty = "select";
+                        break;
+                    case 2:
+                        toasty = "down";
+                        break;
+                }
+                Toast.makeText(getApplicationContext(), toasty, Toast.LENGTH_SHORT).show();
+                PebbleKit.sendAckToPebble(getApplicationContext(), transactionId);
+            }
+        });
     }
 
     private void startGcm() {
