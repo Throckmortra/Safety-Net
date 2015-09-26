@@ -1,9 +1,5 @@
 package hackdc.safetynet;
 
-<<<<<<< HEAD
-import android.os.Bundle;
-import android.util.Log;
-=======
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -14,7 +10,6 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 import android.util.Patterns;
->>>>>>> 3313324be8aa18fa7ea6a2e58230afe956439bbe
 
 import com.google.android.gms.gcm.GcmListenerService;
 
@@ -30,14 +25,7 @@ public class MyGcmReceiver extends GcmListenerService {
         String message = data.getString("message");
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
-<<<<<<< HEAD
 
-        if (from.startsWith("/topics/")) {
-            // message received from some topic.
-        } else {
-            // normal downstream message.
-        }
-=======
         long ay = 2;
         long[] pattern = new long[1];
         pattern[0] = ay;
@@ -74,7 +62,6 @@ public class MyGcmReceiver extends GcmListenerService {
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 // mId allows you to update the notification later on.
         mNotificationManager.notify(1, mBuilder.build());
->>>>>>> 3313324be8aa18fa7ea6a2e58230afe956439bbe
 
         // [START_EXCLUDE]
         /**
