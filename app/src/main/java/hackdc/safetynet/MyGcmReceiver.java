@@ -37,7 +37,7 @@ public class MyGcmReceiver extends GcmListenerService {
                         .setContentTitle("Fred is having an episode!")
                         .setContentText("help him :(")
                         .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
-                        .setLights(Color.RED, 3000, 3000);;
+                        .setLights(Color.WHITE, 3000, 3000);;
 
 // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(this, MainActivity.class);
