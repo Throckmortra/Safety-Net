@@ -10,6 +10,110 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:id="@+id/quoteBar"
+            android:layout_alignParentTop="true"
+            android:text="&quot;You&apos;re doing great baby!!&quot;     -Mom"
+            android:textSize="30dp"
+            android:textStyle="italic"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:id="@+id/progressBar"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_below="@+id/quoteBar">
+
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:id="@+id/imageView"
+                android:background="@drawable/trendup"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+
+                android:text="Daily Progress"
+                android:textSize="20dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:textSize="20dp"
+                android:id="@+id/textView"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nextApptBar"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:layout_below="@+id/progressBar">
+
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:id="@+id/imageView2"
+                android:background="@drawable/calendar"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:text="Next Appointment:"
+                android:textSize="20dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:text="September 29"
+                android:textSize="20dp"
+                android:id="@+id/textView2"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rankTodayBar"
+            android:layout_below="@+id/nextApptBar"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="72dp">
+
+            <ImageView
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:id="@+id/imageView3"
+                android:background="@drawable/happyface"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:text="Today&apos;s Rank:"
+                android:textSize="20dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:text="10"
+                android:textSize="20dp"
+                android:id="@+id/textView3"
+                android:layout_weight="1" />
+        </LinearLayout>
+
         <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
