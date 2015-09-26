@@ -5,7 +5,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+<<<<<<< HEAD
+=======
     <uses-permission android:name="android.permission.VIBRATE" />
+>>>>>>> 3313324be8aa18fa7ea6a2e58230afe956439bbe
     <permission android:name="hackdc.safetynet.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
     <uses-permission android:name="hackdc.safetynet.permission.C2D_MESSAGE" />
@@ -18,13 +21,22 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+
+        </activity>
+
+        <activity
+            android:name=".FragmentHolder"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
         </activity>
 
         <activity
             android:name=".SignInActivity"
-            android:label="Sign in" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
