@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,12 +19,14 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -34,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private String [] fakeData;
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final String TAG = "MainActivity";
+    private LinearLayout progress, nextAppt, rankToday;
+    private RelativeLayout rl;
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
 
@@ -57,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
+        progress = (LinearLayout) findViewById(R.id.progressBar);
+        nextAppt = (LinearLayout) findViewById(R.id.nextApptBar);
+        rankToday = (LinearLayout) findViewById(R.id.rankTodayBar);
+        rl = (RelativeLayout) findViewById(R.id.overallBox);
+
+        progress.setOnClickListener(this);
+        nextAppt.setOnClickListener(this);
+        rankToday.setOnClickListener(this);
+
         mActivityTitle = getTitle().toString();
         addDrawerItems();
         setupDrawer();
@@ -65,19 +80,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("nav bar click", position + "");
-                if(position == 0) {
+                if (position == 0) {
 //                    Intent intent = new Intent(TabActivity.this, OrangeTabsActivity.class);
 //                    intent.putExtra("buttonID", 0 + "");
 //                    startActivity(intent);
-                } else if(position == 1) { //NOTIFICATIONS
+                } else if (position == 1) { //NOTIFICATIONS
 
-                }
-                else if(position == 2) { //ADD FRIENDS
+                } else if (position == 2) { //ADD FRIENDS
 
-                }
-                else if(position == 3) { //GROUPS
-                }
-                else if(position == 5) {
+                } else if (position == 3) { //GROUPS
+                } else if (position == 5) {
 //                    logout();
                 }
             }
@@ -106,8 +118,25 @@ public class MainActivity extends AppCompatActivity {
 
         startGcm();
 
+    }
 
-
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.nextApptBar){
+            Intent intent = new Intent(MainActivity.this, FragmentHolder.class);
+            intent.putExtra("buttonID", 0 + "");
+            startActivity(intent);
+        }
+        if(v.getId() == R.id.progressBar){
+            Intent intent = new Intent(MainActivity.this, FragmentHolder.class);
+            intent.putExtra("buttonID", 1 + "");
+            startActivity(intent);
+        }
+        if(v.getId() == R.id.rankTodayBar){
+            Intent intent = new Intent(MainActivity.this, FragmentHolder.class);
+            intent.putExtra("buttonID", 2 + "");
+            startActivity(intent);
+        }
     }
 
     private void startGcm() {
@@ -139,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void addDrawerItems() {
         String[] navItems = { "Dashboard", "Resources", "Settings", "Sign Out" };
-        mArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, navItems);
+        mArrayAdapter = new ArrayAdapter<String>(this, R.layout.drawer_list_item, R.id.label, navItems);
         mDrawerList.setAdapter(mArrayAdapter);
     }
 

@@ -8,14 +8,15 @@
     xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        android:id="@+id/overallBox">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="144dp"
             android:id="@+id/quoteBar"
             android:layout_alignParentTop="true"
-            android:text="&quot;You&apos;re doing great baby!!&quot;     -Mom"
+            android:text="&quot;You&apos;re doing great babymou!!&quot; -Momma"
             android:textSize="30dp"
             android:textStyle="italic"
             android:gravity="center" />
@@ -25,13 +26,21 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="72dp"
-            android:layout_below="@+id/quoteBar">
+            android:layout_below="@+id/quoteBar"
+            android:layout_marginTop="2dp">
 
-            <ImageView
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:id="@+id/imageView"
-                android:background="@drawable/trendup"/>
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView"
+                    android:background="@drawable/trendup" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -43,12 +52,6 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:textSize="20dp"
-                android:id="@+id/textView"
-                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -56,30 +59,31 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="72dp"
-            android:layout_below="@+id/progressBar">
+            android:layout_below="@+id/progressBar"
+            android:layout_marginTop="2dp">
 
-            <ImageView
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:id="@+id/imageView2"
-                android:background="@drawable/calendar"/>
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView2"
+                    android:background="@drawable/calendar"/>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
-                android:text="Next Appointment:"
+                android:text="Next Appointment: September 29"
                 android:textSize="20dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:paddingLeft="5dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:text="September 29"
-                android:textSize="20dp"
-                android:id="@+id/textView2"
-                android:layout_weight="1" />
+                android:paddingLeft="5dp"
+               />
 
         </LinearLayout>
 
@@ -88,30 +92,33 @@
             android:layout_below="@+id/nextApptBar"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="72dp">
+            android:layout_height="72dp"
+            android:gravity="center"
+            android:layout_marginTop="2dp">
 
-            <ImageView
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
-                android:id="@+id/imageView3"
-                android:background="@drawable/happyface"/>
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/imageView3"
+                    android:background="@drawable/happyface"/>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
-                android:text="Today&apos;s Rank:"
+                android:text="Today&apos;s Rank: click to take"
                 android:textSize="20dp"
                 android:layout_weight="1"
+                android:paddingLeft="5dp"
                 android:gravity="center_vertical"
-                android:paddingLeft="5dp" />
+                />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="72dp"
-                android:text="10"
-                android:textSize="20dp"
-                android:id="@+id/textView3"
-                android:layout_weight="1" />
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
@@ -138,5 +145,6 @@
         android:choiceMode="singleChoice"
         android:divider="@android:color/transparent"
         android:dividerHeight="0dp"
-        android:background="#111"/>
+        android:background="#111"
+        />
 </android.support.v4.widget.DrawerLayout>
