@@ -8,7 +8,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -29,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private String mActivityTitle;
     private ActionBarDrawerToggle mDrawerToggle;
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
     private ArrayAdapter<String> mArrayAdapter;
     private String [] fakeData;
     @Override
@@ -52,19 +48,10 @@ public class MainActivity extends AppCompatActivity {
 //        });
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
         mActivityTitle = getTitle().toString();
         addDrawerItems();
         setupDrawer();
-        // Set the adapter for the list view
-        // Set the list's click listener
-
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        mAdapter = new RecyclerAdapter(fakeData);
-        mRecyclerView.setAdapter(mAdapter);
 
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
