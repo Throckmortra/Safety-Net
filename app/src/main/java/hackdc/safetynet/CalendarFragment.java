@@ -3,7 +3,7 @@ package hackdc.safetynet;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +25,8 @@ public class CalendarFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    CalendarView calendar;
+    private CalendarView calendar;
+    private View mRootView;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -62,13 +63,11 @@ public class CalendarFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        initializeCalendar();
-
     }
 
     public void initializeCalendar() {
 
-        calendar = (CalendarView) getActivity().findViewById(R.id.calendar);
+        calendar = (CalendarView) mRootView.findViewById(R.id.calendar);
         // sets whether to show the week number.
         calendar.setShowWeekNumber(false);
         // sets the first day of week according to Calendar.
@@ -96,7 +95,11 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+
+        mRootView = inflater.inflate(R.layout.fragment_calendar, container, false);
+        initializeCalendar();
+
+        return mRootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -122,6 +125,7 @@ public class CalendarFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     /**
      * This interface must be implemented by activities that contain this

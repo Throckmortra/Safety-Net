@@ -17,17 +17,17 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.util.PebbleDictionary;
 
 import java.util.UUID;
 
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final UUID PEBBLE_APP_UUID = UUID.fromString("e06e86a8-8c29-4f62-9640-6ef21e1f1480");
     private DrawerLayout mDrawerLayout;
@@ -40,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
     private String [] fakeData;
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final String TAG = "MainActivity";
+    private LinearLayout progress, nextAppt, rankToday;
+    private RelativeLayout rl;
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,15 @@ public class MainActivity extends AppCompatActivity {
 //        });
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
+
+        progress = (LinearLayout) findViewById(R.id.progressBar);
+        nextAppt = (LinearLayout) findViewById(R.id.nextApptBar);
+        rankToday = (LinearLayout) findViewById(R.id.rankTodayBar);
+        rl = (RelativeLayout) findViewById(R.id.overallBox);
+
+        progress.setOnClickListener(this);
+        nextAppt.setOnClickListener(this);
+        rankToday.setOnClickListener(this);
 
         mActivityTitle = getTitle().toString();
         addDrawerItems();
@@ -133,6 +143,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.nextApptBar){
+            Intent intent = new Intent(MainActivity.this, FragmentHolder.class);
+            intent.putExtra("buttonID", 0 + "");
+            startActivity(intent);
+        }
+        if(v.getId() == R.id.progressBar){
+            Intent intent = new Intent(MainActivity.this, FragmentHolder.class);
+            intent.putExtra("buttonID", 1 + "");
+            startActivity(intent);
+        }
+        if(v.getId() == R.id.rankTodayBar){
+            Intent intent = new Intent(MainActivity.this, FragmentHolder.class);
+            intent.putExtra("buttonID", 2 + "");
+            startActivity(intent);
+        }
+    }
+
     private void startGcm() {
 
         Log.d("ayyy", "lmao");
@@ -162,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void addDrawerItems() {
         String[] navItems = { "Dashboard", "Resources", "Settings", "Sign Out" };
-        mArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, navItems);
+        mArrayAdapter = new ArrayAdapter<String>(this, R.layout.drawer_list_item, R.id.label, navItems);
         mDrawerList.setAdapter(mArrayAdapter);
     }
 

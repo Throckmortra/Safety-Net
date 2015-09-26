@@ -25,6 +25,7 @@ public class MyGcmReceiver extends GcmListenerService {
         String message = data.getString("message");
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
+
         long ay = 2;
         long[] pattern = new long[1];
         pattern[0] = ay;
