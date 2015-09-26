@@ -10,8 +10,12 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
 
         <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -26,7 +30,7 @@
         android:layout_marginBottom="16dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        app:backgroundTint="#FC9418"/>
+        app:backgroundTint="#BCBBBB"/>
 
 </RelativeLayout>
     <!-- The navigation drawer -->

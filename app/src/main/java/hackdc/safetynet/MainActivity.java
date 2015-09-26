@@ -7,6 +7,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,8 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private String mActivityTitle;
     private ActionBarDrawerToggle mDrawerToggle;
-    private ArrayAdapter<String> mAdapter;
-
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ArrayAdapter<String> mArrayAdapter;
+    private String [] fakeData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,15 +50,21 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mActivityTitle = getTitle().toString();
         addDrawerItems();
         setupDrawer();
         // Set the adapter for the list view
         // Set the list's click listener
+
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mAdapter = new RecyclerAdapter(fakeData);
+        mRecyclerView.setAdapter(mAdapter);
 
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -100,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void addDrawerItems() {
         String[] navItems = { "Dashboard", "Resources", "Settings", "Sign Out" };
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, navItems);
-        mDrawerList.setAdapter(mAdapter);
+        mArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, navItems);
+        mDrawerList.setAdapter(mArrayAdapter);
     }
 
     private void setupDrawer() {
@@ -164,4 +176,5 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
