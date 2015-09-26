@@ -14,7 +14,7 @@ public class ImageAdapter extends BaseAdapter {
     private Context mContext;
 
     public ImageAdapter(GridFragment c) {
-        mContext = c;
+      //  mContext = c;
     }
 
     public int getCount() {

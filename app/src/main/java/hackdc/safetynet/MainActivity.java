@@ -6,11 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
-<<<<<<< HEAD
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-=======
->>>>>>> 3313324be8aa18fa7ea6a2e58230afe956439bbe
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,15 +19,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-<<<<<<< HEAD
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-=======
-import android.widget.TextView;
-import android.widget.Toast;
 
->>>>>>> 3313324be8aa18fa7ea6a2e58230afe956439bbe
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -47,11 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String [] fakeData;
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final String TAG = "MainActivity";
-<<<<<<< HEAD
     private LinearLayout progress, nextAppt, rankToday;
     private RelativeLayout rl;
-=======
->>>>>>> 3313324be8aa18fa7ea6a2e58230afe956439bbe
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
 
@@ -130,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         startGcm();
 
-<<<<<<< HEAD
     }
 
     @Override
@@ -150,10 +136,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.putExtra("buttonID", 2 + "");
             startActivity(intent);
         }
-=======
-
-
->>>>>>> 3313324be8aa18fa7ea6a2e58230afe956439bbe
     }
 
     private void startGcm() {
