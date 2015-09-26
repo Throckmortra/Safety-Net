@@ -61,7 +61,7 @@ public class GridFragment extends Fragment {
         this.getActivity().setContentView(R.layout.main);
 
         GridView gridview = (GridView) getActivity().findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(this));
+        gridview.setAdapter(new ImageAdapter(getActivity()));
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
