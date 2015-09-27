@@ -46,7 +46,7 @@ public class FormFragment extends Fragment implements AdapterView.OnItemSelected
 
     private Spinner mSeveritySpinner;
 
-    private int mSelectedSeverity;
+    private String mSelectedSeverity;
 
     private static String mDate;
 
@@ -92,7 +92,7 @@ public class FormFragment extends Fragment implements AdapterView.OnItemSelected
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Log.d("spinner", i + "");
-        mSelectedSeverity = i + 1;
+        mSelectedSeverity = (i + 1) + "";
     }
 
     @Override
@@ -119,11 +119,12 @@ public class FormFragment extends Fragment implements AdapterView.OnItemSelected
                 @Override
                 public void success(BlankResponse blankResponse, Response response) {
                     Log.d("create episode report", "successful");
+                    getActivity().finish();
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
-                    Log.d("create episode report", "failure");
+                    Log.d("create episode report", error.toString());
                 }
             });
         } else if (v == mDatePickerButton) {

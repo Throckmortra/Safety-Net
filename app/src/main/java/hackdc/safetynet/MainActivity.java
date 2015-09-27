@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(v.getId() == R.id.progressBar){
             Intent intent = new Intent(MainActivity.this, FragmentHolder.class);
-            intent.putExtra("buttonID", 1 + "");
+            intent.putExtra("buttonID", 4 + "");
             startActivity(intent);
         }
         if(v.getId() == R.id.rankTodayBar){
