@@ -1,0 +1,18 @@
+{
+  "uuid": "e06e86a8-8c29-4f62-9640-6ef21e1f1480",
+  "shortName": "Safety-Net-Pebble",
+  "longName": "Safety-Net-Pebble",
+  "companyName": "MakeAwesomeHappen",
+  "versionLabel": "1.0",
+  "sdkVersion": "3",
+  "targetPlatforms": ["aplite", "basalt"],
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": []
+  }
+}
