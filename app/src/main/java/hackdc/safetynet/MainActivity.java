@@ -5,27 +5,36 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
+
 import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.util.PebbleDictionary;
 
+import java.util.HashMap;
 import java.util.UUID;
+
+import hackdc.safetynet.API.RestManager;
+import hackdc.safetynet.API.RestRequests;
+import hackdc.safetynet.API.models.BlankResponse;
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String mActivityTitle;
     private ActionBarDrawerToggle mDrawerToggle;
     private ArrayAdapter<String> mArrayAdapter;
-    private String [] fakeData;
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private static final String TAG = "MainActivity";
     private LinearLayout progress, nextAppt, rankToday;
@@ -52,15 +60,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mContext = getApplicationContext();
 
 //TODO: WORK ON CLICK FOR ADD EPISODE REPORT
-//        fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(TabActivity.this, OrangeTabsActivity.class);
-//                intent.putExtra("buttonID", 1 + "");
-//                startActivity(intent);
-//            }
-//        });
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FragmentHolder.class);
+                intent.putExtra("buttonID", 3 + "");
+                startActivity(intent);
+            }
+        });
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
@@ -125,19 +133,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void receiveData(final Context context, final int transactionId, final PebbleDictionary data) {
                 Log.d("pebble data", "Received : " + data.getInteger(0));
 
-                String toasty = "";
+                RestAdapter restAdapter = RestManager.getRestAdapter();
+                RestRequests request = restAdapter.create(RestRequests.class);
+
+                String message = "";
+                String[] devices = {"ehwrqwezUrM:APA91bFctFHgH7q7DmUms_zHc7iDojBzBL_i9pHnz4d1nK5os1QKbxd-GO-3ssWuF7hekjEGSA6m7ibjCOxlNot3Jgx9uXkstAx0UwgRLbln_2sX3AzETO4zEDNEtpKaSBHLf0Gm5417",
+                        "fAX0A9j3rpY:APA91bEqk_lsBg_6_yisr3X51aLIa-ZMI3Z_QtDnMnZL-yGht9jpUSqbT-sFvonIY4n_LpNRvaL0YkpfrLGLXo8tgt_GlyAoHn3XjRjxWyEu1SHercgieGkJK1PlO0Hk5lDtx-TLvKow"};
+
                 switch (data.getInteger(0).intValue()) {
                     case 0:
-                        toasty = "up";
+                        message = "help, i'm experiencing an episode";
+                        HashMap body = new HashMap<>(2);
+                        body.put("message", message);
+                        body.put("devices", devices);
+
+                        request.helpRequest(body, new Callback<BlankResponse>() {
+                            @Override
+                            public void success(BlankResponse blankResponse, Response response) {
+                                Log.d("helpRequest", "success");
+                            }
+
+                            @Override
+                            public void failure(RetrofitError error) {
+                                Log.d("helpRequest", "failed");
+                            }
+                        });
+
                         break;
                     case 1:
-                        toasty = "select";
+                        message = "select";
                         break;
                     case 2:
-                        toasty = "down";
+                        message = "down";
                         break;
                 }
-                Toast.makeText(getApplicationContext(), toasty, Toast.LENGTH_SHORT).show();
+
+
+//                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                 PebbleKit.sendAckToPebble(getApplicationContext(), transactionId);
             }
         });
