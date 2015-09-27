@@ -2,6 +2,7 @@ package hackdc.safetynet;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ public class ClinicAdapter extends RecyclerView.Adapter<ClinicAdapter.ViewHolder
         private TextView mTrigger;
         private TextView mLocation;
         private TextView mDescription;
+        private TextView mName;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -38,6 +40,7 @@ public class ClinicAdapter extends RecyclerView.Adapter<ClinicAdapter.ViewHolder
             mTrigger = (TextView) itemView.findViewById(R.id.txt_trigger);
             mLocation = (TextView) itemView.findViewById(R.id.txt_location);
             mDescription = (TextView) itemView.findViewById(R.id.txt_description);
+            mName = (TextView) itemView.findViewById(R.id.txt_name);
         }
     }
 
@@ -55,12 +58,12 @@ public class ClinicAdapter extends RecyclerView.Adapter<ClinicAdapter.ViewHolder
     public void onBindViewHolder(ClinicAdapter.ViewHolder holder, int position) {
         Episodes episode = mEpisodes.get(position);
 
-        holder.mSeverity.setText(episode.getSeverity());
+        holder.mSeverity.setText(Html.fromHtml("<b>Severity:</b> " + episode.getSeverity()));
         holder.mDate.setText(episode.getDate());
-        holder.mTrigger.setText(episode.getTrigger());
-        holder.mLocation.setText(episode.getLocation());
+        holder.mTrigger.setText(Html.fromHtml("<b>Trigger:</b> " + episode.getTrigger()));
+        holder.mLocation.setText(Html.fromHtml("<b>Location:</b> " + episode.getLocation()));
         holder.mDescription.setText(episode.getDescription());
-
+        holder.mName.setText(episode.getPatientname());
     }
 
     @Override

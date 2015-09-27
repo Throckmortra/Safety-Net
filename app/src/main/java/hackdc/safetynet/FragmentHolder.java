@@ -77,6 +77,10 @@ public class FragmentHolder extends FragmentActivity implements CalendarFragment
                 fragment = new FormFragment();
                 break;
             }
+            case 4: {
+                fragment = new ReportListFragment();
+                break;
+            }
             default: {
                 fragment = null;
                 break;
