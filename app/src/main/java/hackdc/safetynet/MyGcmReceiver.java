@@ -11,9 +11,6 @@ import android.graphics.Color;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
-import android.util.Log;
-import android.util.Patterns;
-
 import com.google.android.gms.gcm.GcmListenerService;
 
 

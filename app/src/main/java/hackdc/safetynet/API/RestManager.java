@@ -6,7 +6,7 @@ import retrofit.RestAdapter;
  * Created by aaron on 9/26/15.
  */
 public class RestManager {
-    private final static String APIURL = "http://localhost:2403";
+    private final static String APIURL = "http://10.29.68.100:2403";
     private static RestAdapter mRestAdapter;
 
     public static RestAdapter getRestAdapter() {

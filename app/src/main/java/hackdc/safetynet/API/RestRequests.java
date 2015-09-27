@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import hackdc.safetynet.API.models.Episodes;
+import hackdc.safetynet.API.models.LoginCallback;
 import hackdc.safetynet.API.models.User;
 import retrofit.Callback;
 import retrofit.http.Body;
@@ -21,7 +22,10 @@ public interface RestRequests {
     public void getAllEpisodes(Callback<List<Episodes>> response);
 
     @POST("/users/login")
-    public void login(@Body HashMap credentials, Callback<User> response);
+    public void login(@Body HashMap credentials, Callback<LoginCallback> response);
+
+    @GET("/users/{path}")
+    public void getUser(@Path(value="path", encode=true)String ID, Callback<User> response);
 
 
 }

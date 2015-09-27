@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 import hackdc.safetynet.API.RestManager;
 import hackdc.safetynet.API.RestRequests;
+import hackdc.safetynet.API.models.LoginCallback;
 import hackdc.safetynet.API.models.User;
 import retrofit.Callback;
 import retrofit.RestAdapter;
@@ -27,6 +28,7 @@ public class SignInActivity extends FragmentActivity {
     private Button mLoginButton;
     private EditText mUsername;
     private EditText mPassword;
+    private RestAdapter mAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,8 +40,8 @@ public class SignInActivity extends FragmentActivity {
         final Intent mainActivity = new Intent(this, MainActivity.class);
 
         mLoginButton = (Button) findViewById(R.id.loginButton);
-        mUsername = (EditText) findViewById(R.id.tliUsername);
-        mPassword = (EditText) findViewById(R.id.tliPassword);
+        mUsername = (EditText) findViewById(R.id.etUsername);
+        mPassword = (EditText) findViewById(R.id.etPassword);
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,15 +59,31 @@ public class SignInActivity extends FragmentActivity {
         String username = mUsername.getText().toString();
         String password = mPassword.getText().toString();
 
-        RestAdapter adapter = RestManager.getRestAdapter();
+        mAdapter = RestManager.getRestAdapter();
 
-        RestRequests requests = adapter.create(RestRequests.class);
+        RestRequests requests = mAdapter.create(RestRequests.class);
 
         HashMap credentials = new HashMap<>(2);
         credentials.put("username", username);
         credentials.put("password", password);
 
-        requests.login(credentials, new Callback<User>() {
+        requests.login(credentials, new Callback<LoginCallback>() {
+            @Override
+            public void success(LoginCallback loginCallback, Response response) {
+                getId(loginCallback.getUid());
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
+    }
+
+    private void getId(String id){
+        RestRequests requests = mAdapter.create(RestRequests.class);
+
+        requests.getUser(id, new Callback<User>() {
             @Override
             public void success(User user, Response response) {
                 Log.d("login testing", "" + user.getUsername());
@@ -73,7 +91,7 @@ public class SignInActivity extends FragmentActivity {
 
             @Override
             public void failure(RetrofitError error) {
-                Log.d("my life", "is a massive failure");
+
             }
         });
 
