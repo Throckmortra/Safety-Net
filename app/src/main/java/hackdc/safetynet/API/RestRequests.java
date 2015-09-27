@@ -22,6 +22,9 @@ public interface RestRequests {
     @GET("/episodes")
     public void getAllEpisodes(Callback<List<Episodes>> response);
 
+    @POST("/episodes")
+    public void createEpisodeReport(@Body HashMap report, Callback<BlankResponse> response);
+
     @POST("/users/login")
     public void login(@Body HashMap credentials, Callback<LoginCallback> response);
 

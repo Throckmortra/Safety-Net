@@ -18,6 +18,45 @@
 
     </android.support.v7.widget.AppCompatTextView>
 
+    <RelativeLayout
+        android:layout_width="256dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp" >
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/dateLabel"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:gravity="center_vertical"
+            android:textSize="18dp" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/dateDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MM/DD/YYYY"
+            android:gravity="center_vertical"
+            android:textSize="12dp"
+            android:layout_below="@+id/dateLabel"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="8dp"
+            android:text="Select Date"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical" />
+
+    </RelativeLayout>
+
     <android.support.design.widget.TextInputLayout
         android:id="@+id/tliName"
         android:layout_width="wrap_content"
@@ -71,7 +110,7 @@
             android:layout_height="wrap_content"
             android:text="Severity"
             android:gravity="center_vertical"
-            android:textSize="16dp" />
+            android:textSize="18dp" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/severitySublabel"
@@ -93,6 +132,66 @@
         </Spinner>
 
     </RelativeLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tliLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_gravity="center_horizontal" >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/etLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="256dp"
+            android:height="45dp"
+            android:inputType="text"
+            android:hint="Location"
+            android:textColor="@android:color/black" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tliDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_gravity="center_horizontal" >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/etDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="256dp"
+            android:height="45dp"
+            android:inputType="text"
+            android:hint="Description"
+            android:textColor="@android:color/black" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/tliCopingStrat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_gravity="center_horizontal" >
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/etCopingStrat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="256dp"
+            android:height="45dp"
+            android:inputType="text"
+            android:hint="Coping Strategy"
+            android:textColor="@android:color/black" />
+
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/sendReport"

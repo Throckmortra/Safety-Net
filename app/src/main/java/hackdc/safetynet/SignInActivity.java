@@ -77,7 +77,7 @@ public class SignInActivity extends FragmentActivity {
 
             @Override
             public void failure(RetrofitError error) {
-
+                dismissProgressDialog();
             }
         });
     }
