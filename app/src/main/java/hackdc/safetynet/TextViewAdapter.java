@@ -44,18 +44,10 @@ public class TextViewAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View gridView;
         if(convertView == null){
-            gridView = new View(context);
             gridView = inflater.inflate(R.layout.grid_item, null);
             TextView textView = (TextView) gridView.findViewById(R.id.grid_item_label);
-            for(int i = 0; i < 30; i++){
-                if(textColorValues[i].equals("FF0000")){
-                        Log.d("color = " + textColorValues[i], "got it");
-                        String colorVal = "#" + textColorValues[i];
-                        Log.d("yup", colorVal);
-                        textView.setBackgroundColor(Color.parseColor("#FF0000"));
-                }
-            }
             textView.setText((textViewValues[position]));
+            textView.setBackgroundColor(Color.parseColor("#" + textColorValues[position]));
         }
         else{
             gridView = (View) convertView;
