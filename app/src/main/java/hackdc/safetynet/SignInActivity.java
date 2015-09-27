@@ -42,6 +42,8 @@ public class SignInActivity extends FragmentActivity {
         mLoginButton = (Button) findViewById(R.id.loginButton);
         mUsername = (EditText) findViewById(R.id.etUsername);
         mPassword = (EditText) findViewById(R.id.etPassword);
+        mUsername.setHintTextColor(getResources().getColor(R.color.white));
+        mPassword.setHintTextColor(getResources().getColor(R.color.white));
 
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
