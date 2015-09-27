@@ -1,8 +1,10 @@
 package hackdc.safetynet;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,11 +28,14 @@ public class GridFragment extends Fragment {
             "15", "16", "17", "18", "19", "20", "21",
             "22", "23", "24", "25", "26", "27", "28",
             "29", "30"};
-    private String[] textColorValues = {"FF0000", "FFD900", "B2FA00", "FFD900", "FF0000", "FF0000", "FFFFFF",
+    private static String[] textColorValues = {"FF0000", "FFD900", "B2FA00", "FFD900", "FF0000", "FF0000", "FFFFFF",
             "FFFFFF", "B2FA00", "B2FA00", "B2FA00", "B2FA00", "FFD900", "FFD900",
             "B2FA00", "B2FA00", "FF0000", "FFFFFF", "FFFFFF", "FFD900", "FFFFFF",
             "B2FA00", "B2FA00", "FFD900", "FF0000", "FFFFFF", "FFD900", "B2FA00",
             "FFFFFF", "FFD900"};
+
+    private TextViewAdapter mAdapter;
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -65,12 +70,65 @@ public class GridFragment extends Fragment {
         View view = inflater.inflate(R.layout.grid_fragment, container, false);
 
         gridView = (GridView) view.findViewById(R.id.gridview);
-        gridView.setAdapter(new TextViewAdapter(getContext(), textViewValues, textColorValues));
+        mAdapter = new TextViewAdapter(getContext(), textViewValues, textColorValues);
+        gridView.setAdapter(mAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                Log.d("position thing", position +"");
+                                    final int position, long id) {
+                Log.d("position thing", position + "");
+                AlertDialog.Builder b = new AlertDialog.Builder(getContext());
+                b.setTitle("How is your day going?");
+                String[] types = {"10 - Excellent!", "9", "8", "7", "6", "5", "4", "3", "2", "1", "0 - Terribly"};
+                b.setItems(types, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                        switch (which) {
+                            case 0:
+                                textColorValues[position] = "B2FA00";
+                                break;
+                            case 1:
+                                textColorValues[position] = "B2FA00";
+                                break;
+                            case 2:
+                                textColorValues[position] = "B2FA00";
+                                break;
+                            case 3:
+                                textColorValues[position] = "B2FA00";
+                                break;
+                            case 4:
+                                textColorValues[position] = "FFD900";
+                                break;
+                            case 5:
+                                textColorValues[position] = "FFD900";
+                                break;
+                            case 6:
+                                textColorValues[position] = "FFD900";
+                                break;
+                            case 7:
+                                textColorValues[position] = "FF0000";
+                                break;
+                            case 8:
+                                textColorValues[position] = "FF0000";
+                                break;
+                            case 9:
+                                textColorValues[position] = "FF0000";
+                                break;
+                            case 10:
+                                textColorValues[position] = "FF0000";
+                                break;
+                        }
+
+                        mAdapter = new TextViewAdapter(getContext(), textViewValues, textColorValues);
+                        gridView.setAdapter(mAdapter);
+                    }
+
+                });
+
+                b.show();
             }
         });
 
