@@ -7,6 +7,7 @@ package hackdc.safetynet.API;
 import java.util.HashMap;
 import java.util.List;
 
+import hackdc.safetynet.API.models.BlankResponse;
 import hackdc.safetynet.API.models.Episodes;
 import hackdc.safetynet.API.models.LoginCallback;
 import hackdc.safetynet.API.models.User;
@@ -27,5 +28,6 @@ public interface RestRequests {
     @GET("/users/{path}")
     public void getUser(@Path(value="path", encode=true)String ID, Callback<User> response);
 
-
+    @POST("/dpdgcm")
+    public void helpRequest(@Body HashMap body, Callback<BlankResponse> response);
 }

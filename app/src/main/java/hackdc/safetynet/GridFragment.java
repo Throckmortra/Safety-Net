@@ -1,26 +1,15 @@
 package hackdc.safetynet;
 
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link GridFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link GridFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class GridFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,8 +20,12 @@ public class GridFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
-
+    private GridView gridView;
+    private String[] textViewValues = {"1", "2", "3", "4", "5", "6", "7",
+            "8", "9", "10", "11", "12", "13", "14",
+            "15", "16", "17", "18", "19", "20", "21",
+            "22", "23", "24", "25", "26", "27", "28",
+            "29", "30"};
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -58,48 +51,36 @@ public class GridFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getActivity().setContentView(R.layout.main);
-
-        GridView gridview = (GridView) getActivity().findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(getActivity()));
-
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                Log.d("position thing", position +"");
-            }
-        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_grid, container, false);
-    }
+        View view = inflater.inflate(R.layout.grid_fragment, container, false);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        gridView = (GridView) view.findViewById(R.id.gridview);
+        gridView.setAdapter(new TextViewAdapter(getContext(), textViewValues));
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                Log.d("position thing", position +"");
+            }
+        });
+
+        return view;
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
+
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
     /**
@@ -112,9 +93,5 @@ public class GridFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
-    }
 
 }

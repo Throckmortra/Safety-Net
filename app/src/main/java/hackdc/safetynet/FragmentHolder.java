@@ -14,11 +14,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 
+import hackdc.safetynet.API.FormFragment;
+
 
 public class FragmentHolder extends FragmentActivity implements CalendarFragment.OnFragmentInteractionListener{
 
     private ProgressDialog mProgressDialog;
     private String mButtonID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,6 @@ public class FragmentHolder extends FragmentActivity implements CalendarFragment
         Intent intent = getIntent();
         mButtonID = intent.getStringExtra("buttonID");
         selectItem(Integer.parseInt(mButtonID));
-
     }
 
     @Override
@@ -70,11 +72,16 @@ public class FragmentHolder extends FragmentActivity implements CalendarFragment
             }
             case 2: {
                 //show grid view of
-                fragment = new CalendarFragment();
+                fragment = new GridFragment();
+                break;
+            }
+            case 3: {
+                fragment = new FormFragment();
                 break;
             }
             default: {
                 fragment = null;
+                break;
             }
         }
 
