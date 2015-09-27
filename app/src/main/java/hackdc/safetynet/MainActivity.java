@@ -177,17 +177,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 PebbleKit.sendAckToPebble(getApplicationContext(), transactionId);
             }
         });
-        final Handler handler = new Handler();
-        final Runnable mQuoteChecker = new Runnable() {
-            @Override
-            public void run() {
-                for(int i = 0; i < quotes.length; i++) {
-                    quote.setText(quotes[i]);
-                }
-                handler.postDelayed(mQuoteChecker, 3000);
-            }
-        };
-        mQuoteChecker.run();
     }
 
     @Override
