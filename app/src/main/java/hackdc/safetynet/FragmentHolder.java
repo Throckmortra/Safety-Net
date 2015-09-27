@@ -13,12 +13,14 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.GridView;
 
 
 public class FragmentHolder extends FragmentActivity implements CalendarFragment.OnFragmentInteractionListener{
 
     private ProgressDialog mProgressDialog;
     private String mButtonID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class FragmentHolder extends FragmentActivity implements CalendarFragment
         Intent intent = getIntent();
         mButtonID = intent.getStringExtra("buttonID");
         selectItem(Integer.parseInt(mButtonID));
+
 
     }
 
@@ -70,7 +73,7 @@ public class FragmentHolder extends FragmentActivity implements CalendarFragment
             }
             case 2: {
                 //show grid view of
-                fragment = new CalendarFragment();
+                fragment = new GridFragment();
                 break;
             }
             default: {
