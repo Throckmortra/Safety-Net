@@ -12,6 +12,7 @@ public class Episodes {
     private String heartrate;
     private String location;
     private String description;
+    private String severity;
 
     public String getId() {
         return id;
@@ -39,5 +40,9 @@ public class Episodes {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getSeverity() {
+        return severity;
     }
 }
