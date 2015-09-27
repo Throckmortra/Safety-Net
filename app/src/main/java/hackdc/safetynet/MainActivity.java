@@ -28,6 +28,7 @@ import com.getpebble.android.kit.PebbleKit;
 import com.getpebble.android.kit.util.PebbleDictionary;
 
 import java.util.HashMap;
+import java.util.Random;
 import java.util.UUID;
 
 import hackdc.safetynet.API.RestManager;
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String[] quotes = {"You're the greatest running buddy ever! -Carrie", "You're making great progress! -Jake", "I love you honey! -Mom"};
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
+
+    Thread t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,7 +146,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 String message = "";
                 String[] devices = {"ehwrqwezUrM:APA91bFctFHgH7q7DmUms_zHc7iDojBzBL_i9pHnz4d1nK5os1QKbxd-GO-3ssWuF7hekjEGSA6m7ibjCOxlNot3Jgx9uXkstAx0UwgRLbln_2sX3AzETO4zEDNEtpKaSBHLf0Gm5417",
-                        "fAX0A9j3rpY:APA91bEqk_lsBg_6_yisr3X51aLIa-ZMI3Z_QtDnMnZL-yGht9jpUSqbT-sFvonIY4n_LpNRvaL0YkpfrLGLXo8tgt_GlyAoHn3XjRjxWyEu1SHercgieGkJK1PlO0Hk5lDtx-TLvKow"};
+                        "fAX0A9j3rpY:APA91bEqk_lsBg_6_yisr3X51aLIa-ZMI3Z_QtDnMnZL-yGht9jpUSqbT-sFvonIY4n_LpNRvaL0YkpfrLGLXo8tgt_GlyAoHn3XjRjxWyEu1SHercgieGkJK1PlO0Hk5lDtx-TLvKow",
+                        "dJlV0rgg3-4:APA91bEhW4O_lIYBIaNKcyCMfd4ZXoZ3SdavpK2UiRxsJ94rz10DBCCFZt1S3QJYFHYzso60rtjvoObT8FthREt5GuuBLKRtGl5gKS7iqoYTMOfFOYEEnxjKhO4DbucSi8216F4PMAq6"};
 
                 switch (data.getInteger(0).intValue()) {
                     case 0:
@@ -178,6 +182,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 PebbleKit.sendAckToPebble(getApplicationContext(), transactionId);
             }
         });
+        Random r = new Random();
+        quote.setText(quotes[r.nextInt(3)]);
     }
 
     @Override
@@ -292,7 +298,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
+
     public static void setRank(String r) {
         rank.setText("Your rank today is: " + r);
     }
+
 }

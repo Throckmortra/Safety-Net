@@ -108,7 +108,8 @@ public class SignInActivity extends FragmentActivity {
             startActivity(mainActivity);
         }
         else if(type.equals("support")){
-            //Intent
+            Intent support = new Intent(this, SupportActivity.class);
+            startActivity(support);
         }
         else{
             Intent clinician = new Intent(this, ClinicActivity.class);
