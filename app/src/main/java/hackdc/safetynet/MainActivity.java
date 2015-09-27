@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
@@ -20,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.getpebble.android.kit.PebbleKit;
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "MainActivity";
     private LinearLayout progress, nextAppt, rankToday;
     private RelativeLayout rl;
+    private TextView quote;
+    private String[] quotes = {"You're the greatest running buddy ever! -Carrie", "You're making great progress! -Jake", "I love you honey! -Mom"};
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
 
@@ -59,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         mContext = getApplicationContext();
 
-//TODO: WORK ON CLICK FOR ADD EPISODE REPORT
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
+        quote = (TextView) findViewById(R.id.quoteBar);
         progress = (LinearLayout) findViewById(R.id.progressBar);
         nextAppt = (LinearLayout) findViewById(R.id.nextApptBar);
         rankToday = (LinearLayout) findViewById(R.id.rankTodayBar);
@@ -173,6 +177,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 PebbleKit.sendAckToPebble(getApplicationContext(), transactionId);
             }
         });
+        final Handler handler = new Handler();
+        final Runnable mQuoteChecker = new Runnable() {
+            @Override
+            public void run() {
+                for(int i = 0; i < quotes.length; i++) {
+                    quote.setText(quotes[i]);
+                }
+                handler.postDelayed(mQuoteChecker, 3000);
+            }
+        };
+        mQuoteChecker.run();
     }
 
     @Override

@@ -1,6 +1,8 @@
 package hackdc.safetynet;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +16,12 @@ public class TextViewAdapter extends BaseAdapter {
 
     private Context context;
     private final String[] textViewValues;
-    private int position;
+    private final String[] textColorValues;
 
-    public TextViewAdapter(Context context, String[] textViewValues) {
+    public TextViewAdapter(Context context, String[] textViewValues, String[] textColorValues) {
         this.context = context;
         this.textViewValues = textViewValues;
-        this.position = position;
+        this.textColorValues = textColorValues;
     }
 
     @Override
@@ -45,6 +47,14 @@ public class TextViewAdapter extends BaseAdapter {
             gridView = new View(context);
             gridView = inflater.inflate(R.layout.grid_item, null);
             TextView textView = (TextView) gridView.findViewById(R.id.grid_item_label);
+            for(int i = 0; i < 30; i++){
+                if(textColorValues[i].equals("FF0000")){
+                        Log.d("color = " + textColorValues[i], "got it");
+                        String colorVal = "#" + textColorValues[i];
+                        Log.d("yup", colorVal);
+                        textView.setBackgroundColor(Color.parseColor("#FF0000"));
+                }
+            }
             textView.setText((textViewValues[position]));
         }
         else{

@@ -21,11 +21,16 @@ public class GridFragment extends Fragment {
     private String mParam2;
 
     private GridView gridView;
-    private String[] textViewValues = {"1", "2", "3", "4", "5", "6", "7",
-            "8", "9", "10", "11", "12", "13", "14",
+    private String[] textViewValues = {"01", "02", "03", "04", "05", "06", "07",
+            "08", "09", "10", "11", "12", "13", "14",
             "15", "16", "17", "18", "19", "20", "21",
             "22", "23", "24", "25", "26", "27", "28",
             "29", "30"};
+    private String[] textColorValues = {"FF0000", "FFD900", "B2FA00", "FFD900", "FF0000", "FF0000", "FFFFFF",
+            "FFFFFF", "B2FA00", "B2FA00", "B2FA00", "B2FA00", "FFD900", "FFD900",
+            "B2FA00", "B2FA00", "FF0000", "FFFFFF", "FFFFFF", "FFD900", "FFFFFF",
+            "B2FA00", "B2FA00", "FFD900", "FF0000", "FFFFFF", "FFD900", "B2FA00",
+            "FFFFFF", "FFD900"};
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -60,7 +65,7 @@ public class GridFragment extends Fragment {
         View view = inflater.inflate(R.layout.grid_fragment, container, false);
 
         gridView = (GridView) view.findViewById(R.id.gridview);
-        gridView.setAdapter(new TextViewAdapter(getContext(), textViewValues));
+        gridView.setAdapter(new TextViewAdapter(getContext(), textViewValues, textColorValues));
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
