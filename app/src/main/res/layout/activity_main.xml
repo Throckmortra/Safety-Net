@@ -112,12 +112,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
-                android:text="Today&apos;s Rank: click to take"
+                android:text="Click to Rank Today"
                 android:textSize="20dp"
                 android:layout_weight="1"
                 android:paddingLeft="5dp"
                 android:gravity="center_vertical"
-                />
+                android:id="@+id/ranker" />
 
         </LinearLayout>
 

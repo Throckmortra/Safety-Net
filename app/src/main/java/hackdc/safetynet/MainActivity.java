@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "MainActivity";
     private LinearLayout progress, nextAppt, rankToday;
     private RelativeLayout rl;
-    private TextView quote;
+    private static TextView quote, rank;
     private String[] quotes = {"You're the greatest running buddy ever! -Carrie", "You're making great progress! -Jake", "I love you honey! -Mom"};
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progress = (LinearLayout) findViewById(R.id.progressBar);
         nextAppt = (LinearLayout) findViewById(R.id.nextApptBar);
         rankToday = (LinearLayout) findViewById(R.id.rankTodayBar);
+        rank = (TextView) findViewById(R.id.ranker);
         rl = (RelativeLayout) findViewById(R.id.overallBox);
 
         progress.setOnClickListener(this);
@@ -291,4 +292,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
+    public static void setRank(String r) {
+        rank.setText("Your rank today is: " + r);
+    }
 }

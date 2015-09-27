@@ -89,36 +89,47 @@ public class GridFragment extends Fragment {
                         switch (which) {
                             case 0:
                                 textColorValues[position] = "B2FA00";
+                                MainActivity.setRank("10");
                                 break;
                             case 1:
                                 textColorValues[position] = "B2FA00";
+                                MainActivity.setRank("9");
                                 break;
                             case 2:
                                 textColorValues[position] = "B2FA00";
+                                MainActivity.setRank("8");
                                 break;
                             case 3:
                                 textColorValues[position] = "B2FA00";
+                                MainActivity.setRank("7");
                                 break;
                             case 4:
                                 textColorValues[position] = "FFD900";
+                                MainActivity.setRank("6");
                                 break;
                             case 5:
                                 textColorValues[position] = "FFD900";
+                                MainActivity.setRank("5");
                                 break;
                             case 6:
                                 textColorValues[position] = "FFD900";
+                                MainActivity.setRank("4");
                                 break;
                             case 7:
                                 textColorValues[position] = "FF0000";
+                                MainActivity.setRank("3");
                                 break;
                             case 8:
                                 textColorValues[position] = "FF0000";
+                                MainActivity.setRank("2");
                                 break;
                             case 9:
                                 textColorValues[position] = "FF0000";
+                                MainActivity.setRank("1");
                                 break;
                             case 10:
                                 textColorValues[position] = "FF0000";
+                                MainActivity.setRank("0");
                                 break;
                         }
 
