@@ -4,13 +4,17 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.HashMap;
+
+import javax.xml.parsers.SAXParserFactory;
 
 import hackdc.safetynet.API.RestManager;
 import hackdc.safetynet.API.RestRequests;
@@ -29,6 +33,7 @@ public class SignInActivity extends FragmentActivity {
     private Button mLoginButton;
     private EditText mUsername;
     private EditText mPassword;
+    private TextView safety;
     private RestAdapter mAdapter;
     private ProgressDialog mProgressDialog;
 
@@ -44,7 +49,10 @@ public class SignInActivity extends FragmentActivity {
         mPassword = (EditText) findViewById(R.id.etPassword);
         mUsername.setHintTextColor(getResources().getColor(R.color.white));
         mPassword.setHintTextColor(getResources().getColor(R.color.white));
-
+        safety = (TextView) findViewById(R.id.safetynet);
+        String first = "SAFETY";
+        String next = "<font color='#FFE220'>NET</font>";
+        safety.setText(Html.fromHtml(first + next));
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

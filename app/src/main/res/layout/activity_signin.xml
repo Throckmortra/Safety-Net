@@ -15,7 +15,8 @@
         android:layout_marginRight="16dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="64dp"
-        android:background="#4B000000">
+        android:background="#4B000000"
+        android:textColorHint="#FFFFFF" >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/etUsername"
@@ -40,7 +41,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:textColorHint="#FFFFFF" >
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/etPassword"
@@ -68,5 +70,16 @@
         android:layout_marginTop="32dp"
         android:background="#14A387"
         android:textColor="#FFFFFF" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="SAFETYNET"
+        android:id="@+id/safetynet"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="150dp"
+        android:textColor="#FFFFFF"
+        android:textSize="60dp" />
 
 </LinearLayout>

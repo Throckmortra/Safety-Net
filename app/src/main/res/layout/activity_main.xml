@@ -1,5 +1,6 @@
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -78,12 +79,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
-                android:text="Next Appointment: September 29"
+                android:text="Next Appointment: September 27"
                 android:textSize="20dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp"
-               />
+                android:id="@+id/blaf" />
 
         </LinearLayout>
 
@@ -134,7 +135,7 @@
         android:layout_marginBottom="16dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        app:backgroundTint="#BCBBBB"/>
+        app:backgroundTint="#14A387"/>
 
 </RelativeLayout>
     <!-- The navigation drawer -->
